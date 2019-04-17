@@ -1,12 +1,15 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const User = require('../models/user')
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
-  done(null, id)
+  User.findById(id).then((user) => {
+    done(null, user)
+  })
 })
 
 passport.use(
@@ -16,8 +19,15 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/login/callback'
     },
-    (accessToken, refreshToken, profile, done) => {
-      done(null, profile)
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await User.findOne({ googleID: profile.id })
+      if (existingUser) {
+        return done(null, existingUser)
+      }
+
+      const user = new User({ googleID: profile.id }).save()
+
+      done(null, user)
     }
   )
 )
