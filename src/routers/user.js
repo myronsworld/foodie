@@ -4,11 +4,10 @@ const User = require('../models/user')
 const loginRequired = require('../middleware/loginRequired')
 
 router.get('/profile', loginRequired, (req, res) => {
-  res.send('Your profile')
+  res.send(req.user)
 })
 
 router.patch('/profile/update', loginRequired, async (req, res) => {
-  console.log(req.body)
   const updates = Object.keys(req.body)
   const allowedUpdates = ['name', 'email']
 

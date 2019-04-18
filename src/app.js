@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const userRoutes = require('./routers/user')
 const authRoutes = require('./routers/auth')
+const recipeRoutes = require('./routers/recipe')
 const cookieSession = require('cookie-session')
 const passport = require('passport')
 require('./middleware/passport')
@@ -16,6 +17,6 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(express.json(), authRoutes, userRoutes)
+app.use(express.json(), authRoutes, userRoutes, recipeRoutes)
 
 module.exports = app
