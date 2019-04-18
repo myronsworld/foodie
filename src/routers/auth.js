@@ -10,7 +10,8 @@ router.get(
   })
 )
 router.get('/login/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect('/')
+  // res.redirect('/')
+  res.send(req.user)
 })
 
 router.get('/test', loginRequired, (req, res) => {
