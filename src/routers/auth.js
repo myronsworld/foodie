@@ -10,12 +10,7 @@ router.get(
   })
 )
 router.get('/login/callback', passport.authenticate('google'), (req, res) => {
-  // res.redirect('/')
-  res.send(req.user)
-})
-
-router.get('/test', loginRequired, (req, res) => {
-  res.send('dssd')
+  res.redirect('/')
 })
 
 router.get('/api/logout', (req, res) => {
