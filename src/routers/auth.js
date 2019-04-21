@@ -10,7 +10,7 @@ router.get(
   })
 )
 router.get('/login/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect('/')
+  res.redirect('/profile')
 })
 
 router.get('/api/logout', (req, res) => {
