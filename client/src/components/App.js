@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Header from './Header'
+import Footer from './Footer'
 import Profile from './Profile'
 import Home from './Home'
 import About from './About'
@@ -16,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="container">
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
@@ -24,6 +25,7 @@ class App extends Component {
             <PrivateRoute exact path="/profile" component={Profile} />
           </Switch>
         </div>
+        <Footer />
       </Router>
     )
   }
