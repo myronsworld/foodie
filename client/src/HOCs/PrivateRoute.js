@@ -6,8 +6,6 @@ class PrivateRoute extends Component {
   render() {
     const { component: Component, ...rest } = this.props
 
-    console.log(this.props)
-
     return (
       <Route
         {...rest}
