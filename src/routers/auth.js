@@ -15,6 +15,7 @@ router.get('/login/callback', passport.authenticate('google'), (req, res) => {
 
 router.get('/api/logout', (req, res) => {
   req.logout()
+  req.session = null
   res.redirect('/')
 })
 

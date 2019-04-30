@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderContent() {
-    if (this.props.auth) {
+    if (this.props.auth._id) {
       return (
         <ul>
           <li>

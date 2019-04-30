@@ -11,7 +11,7 @@ class PrivateRoute extends Component {
     return (
       <Route
         {...rest}
-        render={(props) => (this.props.auth ? <Component {...props} /> : props.history.push('/login'))}
+        render={(props) => (this.props.auth._id !== '""' ? <Component {...props} /> : props.history.push('/login'))}
       />
     )
   }
