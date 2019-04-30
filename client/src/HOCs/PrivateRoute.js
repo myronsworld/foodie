@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, withRouter } from 'react-router-dom'
 
 class PrivateRoute extends Component {
   render() {
@@ -9,7 +9,7 @@ class PrivateRoute extends Component {
     return (
       <Route
         {...rest}
-        render={(props) => (this.props.auth._id !== '""' ? <Component {...props} /> : props.history.push('/login'))}
+        render={(props) => (this.props.auth._id !== null ? <Component {...props} /> : props.history.push('/login'))}
       />
     )
   }

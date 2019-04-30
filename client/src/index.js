@@ -10,10 +10,12 @@ import reducers from './reducers'
 const store = createStore(
   reducers,
   {
-    auth: { _id: '' }
+    auth: { _id: null }
   },
   applyMiddleware(reduxThunk)
 )
+
+console.log(store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
