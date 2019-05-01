@@ -13,7 +13,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = { auth: localStorage.getItem('sessionID') }
-    console.log(this.state)
   }
 
   async componentWillMount() {
