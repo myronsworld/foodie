@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderContent() {
-    if (this.props.auth._id) {
+    if (true) {
       return (
         <Fragment>
           <Link className="navbar-item" to="/profile">
@@ -44,8 +43,4 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
-}
-
-export default connect(mapStateToProps)(Header)
+export default Header

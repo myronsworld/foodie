@@ -1,22 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 class PrivateRoute extends Component {
   render() {
     const { component: Component, ...rest } = this.props
+    console.log(this.props)
 
-    return (
-      <Route
-        {...rest}
-        render={(props) => (this.props.auth._id !== null ? <Component {...props} /> : props.history.push('/login'))}
-      />
-    )
+    if (this.props.auth === false || this.props.auth === null) {
+      return <Redirect to="/login" />
+    }
+
+    return <Route {...rest} render={(props) => <Component {...props} />} />
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth }
-}
-
-export default connect(mapStateToProps)(PrivateRoute)
+export default PrivateRoute
