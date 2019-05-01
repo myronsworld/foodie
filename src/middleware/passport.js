@@ -23,7 +23,10 @@ passport.use(
         return done(null, existingUser)
       }
 
-      const user = new User({ googleID: profile.id }).save()
+      const user = new User({
+        googleID: profile.id,
+        name: profile.displayName
+      }).save()
 
       done(null, user)
     }

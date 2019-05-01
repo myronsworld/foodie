@@ -13,19 +13,21 @@ class App extends Component {
     super(props)
     this.state = {
       auth: localStorage.getItem('sessionID'),
-      user: {}
+      user: {},
+      loading: true
     }
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     try {
       const res = await axios.get('/api/current_user')
 
       if (res) {
-        this.setState({ auth: true })
+        this.setState({ auth: res.data._id })
         this.setState({ user: res.data })
-        console.log(this.state)
         localStorage.setItem('sessionID', res.data._id)
+        this.setState({ loading: false })
+        // console.log(this.state)
       }
     } catch (e) {
       this.setState({ auth: false })
@@ -38,7 +40,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <Header />
+          <Header {...this.state} />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />

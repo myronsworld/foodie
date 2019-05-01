@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
 
 class PrivateRoute extends Component {
   render() {
@@ -13,7 +12,7 @@ class PrivateRoute extends Component {
       return window.location.assign('/login')
     }
 
-    return <Route {...rest} render={(props) => <Component {...props} />} />
+    return <Component {...rest} />
   }
 }
 
