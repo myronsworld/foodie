@@ -23,14 +23,13 @@ class App extends Component {
       const res = await axios.get('/api/current_user')
 
       if (res) {
-        this.setState({ auth: res.data._id })
-        this.setState({ user: res.data })
+        this.setState(() => ({ auth: res.data._id }))
+        this.setState(() => ({ user: res.data }))
         localStorage.setItem('sessionID', res.data._id)
-        this.setState({ loading: false })
-        // console.log(this.state)
+        this.setState(() => ({ loading: false }))
       }
     } catch (e) {
-      this.setState({ auth: false })
+      this.setState(() => ({ auth: false }))
       localStorage.removeItem('sessionID')
       console.log(e)
     }
