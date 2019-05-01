@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
-
 import Header from './Header'
 import Footer from './Footer'
 import Profile from './Profile'
@@ -12,15 +11,22 @@ import PrivateRoute from '../HOCs/PrivateRoute'
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { auth: localStorage.getItem('sessionID') }
+    this.state = {
+      auth: localStorage.getItem('sessionID'),
+      user: {}
+    }
   }
 
   async componentWillMount() {
     try {
       const res = await axios.get('/api/current_user')
 
-      this.setState({ auth: true })
-      localStorage.setItem('sessionID', res.data._id)
+      if (res) {
+        this.setState({ auth: true })
+        this.setState({ user: res.data })
+        console.log(this.state)
+        localStorage.setItem('sessionID', res.data._id)
+      }
     } catch (e) {
       this.setState({ auth: false })
       localStorage.removeItem('sessionID')
