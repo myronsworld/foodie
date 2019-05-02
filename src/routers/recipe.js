@@ -6,8 +6,10 @@ const loginRequired = require('../middleware/loginRequired')
 router.post('/recipe', loginRequired, async (req, res) => {
   const recipe = new Recipe({
     ...req.body,
-    chef: req.user.id
+    chef: req.user._id
   })
+
+  console.log(req.user)
 
   try {
     await recipe.save()
