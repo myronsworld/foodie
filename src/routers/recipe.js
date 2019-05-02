@@ -9,8 +9,6 @@ router.post('/recipe', loginRequired, async (req, res) => {
     chef: req.user._id
   })
 
-  console.log(req.user)
-
   try {
     await recipe.save()
     res.status(201).send(recipe)

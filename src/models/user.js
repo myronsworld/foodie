@@ -17,6 +17,11 @@ const userSchema = new mongoose.Schema(
     timestamps: true
   }
 )
+userSchema.virtual('recipes', {
+  ref: 'Recipe',
+  localField: '_id',
+  foreignField: 'chef'
+})
 
 const User = mongoose.model('User', userSchema)
 
