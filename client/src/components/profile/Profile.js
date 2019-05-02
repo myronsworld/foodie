@@ -2,10 +2,18 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 class Profile extends Component {
-  async componentDidUpdate() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      recipes: {}
+    }
+  }
+
+  async componentDidMount() {
     try {
       const res = await axios.get('/api/profile/recipes')
-      console.log(res)
+
+      this.setState(() => ({ recipes: res }))
     } catch (e) {
       console.log(e)
     }
@@ -20,6 +28,17 @@ class Profile extends Component {
     }
   }
 
+  renderRecipeList() {
+    const recipes = this.state.recipes.data
+    console.log(recipes)
+    let listRecipes = []
+    if (recipes) {
+      listRecipes = recipes.map((recipe) => <li key={recipe._id}>{recipe.title}</li>)
+    }
+
+    return <ul>{listRecipes}</ul>
+  }
+
   render() {
     return (
       <section className="section">
@@ -28,6 +47,7 @@ class Profile extends Component {
             <div className="column">{this.renderContent()}</div>
             <div className="column">
               <h2>MY RECIPES</h2>
+              {this.renderRecipeList()}
             </div>
           </div>
         </div>

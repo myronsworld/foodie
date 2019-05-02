@@ -29,19 +29,16 @@ router.patch('/profile/update', loginRequired, async (req, res) => {
   }
 })
 
-router.get('/profile/recipes', loginRequired, async (req, res) => {
+router.get('/api/profile/recipes', loginRequired, async (req, res) => {
   try {
-    const recipes = await User.findById(req.user._id)
-      .populate('recipes')
-      .exec((err, user) => {
-        console.log(user.recipes)
+    await req.user
+      .populate({
+        path: 'recipes'
       })
-    if (!recipes) {
-      return res.send(400).send()
-    }
-    res.status(200).send(recipes)
+      .execPopulate()
+    res.send(req.user.recipes)
   } catch (e) {
-    res.status(400).send(e)
+    res.status(500).send(e)
   }
 })
 

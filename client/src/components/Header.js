@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderContent() {
-    console.log(this.props)
-
     if (this.props.auth !== false) {
       return (
         <Fragment>
