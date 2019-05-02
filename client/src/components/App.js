@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 import Header from './Header'
 import Footer from './Footer'
-import Profile from './Profile'
+import Profile from './profile/Profile'
 import Home from './Home'
 import About from './About'
 import PrivateRoute from '../HOCs/PrivateRoute'
@@ -38,14 +38,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
-          <Header {...this.state} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
-          </Switch>
-        </div>
+        <Header {...this.state} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
+        </Switch>
         <Footer />
       </Router>
     )

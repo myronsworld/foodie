@@ -31,16 +31,18 @@ class Header extends Component {
   render() {
     return (
       <header className="header">
-        <nav className="navbar">
-          <div className="navbar-brand">
-            <Link className="navbar-item" to="/">
-              Home
-            </Link>
-          </div>
-          <div className="navbar-menu">
-            <div className="navbar-end">{this.renderContent()}</div>
-          </div>
-        </nav>
+        <div className="container is-fluid">
+          <nav className="navbar">
+            <div className="navbar-brand">
+              <Link className="navbar-item" to="/">
+                Home
+              </Link>
+            </div>
+            <div className="navbar-menu">
+              <div className="navbar-end">{this.renderContent()}</div>
+            </div>
+          </nav>
+        </div>
       </header>
     )
   }
