@@ -20,17 +20,14 @@ class Profile extends Component {
   }
 
   renderContent() {
-    if (this.props.loading === true) {
-      return <p />
-    }
     if (this.props.loading === false) {
       return <p>This is your profile page, {this.props.user.name}</p>
     }
   }
 
-  renderRecipeList() {
+  renderRecipesList() {
     const recipes = this.state.recipes.data
-    console.log(recipes)
+
     let listRecipes = []
     if (recipes) {
       listRecipes = recipes.map((recipe) => <li key={recipe._id}>{recipe.title}</li>)
@@ -47,7 +44,7 @@ class Profile extends Component {
             <div className="column">{this.renderContent()}</div>
             <div className="column">
               <h2>MY RECIPES</h2>
-              {this.renderRecipeList()}
+              {this.renderRecipesList()}
             </div>
           </div>
         </div>
