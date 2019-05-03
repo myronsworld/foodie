@@ -11,10 +11,10 @@ class AddRecipe extends Component {
     this.state = {
       recipeTitle: '',
       description: '',
-      foodType: new Map(),
+      foodType: [],
       cookTime: null,
       prepTime: null,
-      ingredients: new Map(),
+      ingredients: [],
       serves: null,
       directions: ''
     }
@@ -36,14 +36,52 @@ class AddRecipe extends Component {
     const target = event.target.name
     const isChecked = event.target.checked
 
-    this.setState((prevState) => ({ foodType: prevState.foodType.set(target, isChecked) }))
+    if (!isChecked) {
+      if (this.state.foodType.includes(target)) {
+        this.setState((prevState) => ({
+          foodType: [this.state.foodType.splice(this.state.foodType.indexOf(target), 1)]
+        }))
+      }
+    }
+
+    if (!this.state.foodType.includes(target)) {
+      this.setState((prevState) => ({
+        foodType: [...prevState.foodType, target]
+      }))
+    }
+
+    console.log(this.state)
   }
 
   handleIngredientsCheckboxChange(event) {
     const target = event.target.name
     const isChecked = event.target.checked
 
-    this.setState((prevState) => ({ ingredients: prevState.ingredients.set(target, isChecked) }))
+    if (!isChecked) {
+      if (this.state.ingredients.includes(target)) {
+        this.setState((prevState) => ({
+          ingredients: [this.state.ingredients.splice(this.state.ingredients.indexOf(target), 1)]
+        }))
+      }
+    }
+
+    if (!this.state.ingredients.includes(target)) {
+      this.setState((prevState) => ({
+        ingredients: [...prevState.ingredients, target]
+      }))
+    }
+  }
+
+  showFoodTypeChecked(searchFoodType) {
+    if (this.state.foodType.includes(searchFoodType)) {
+      return true
+    }
+  }
+
+  showIngredientChecked(searchIngredient) {
+    if (this.state.ingredients.includes(searchIngredient)) {
+      return true
+    }
   }
 
   async handleSubmit(event) {
@@ -53,15 +91,15 @@ class AddRecipe extends Component {
         method: 'post',
         url: '/api/recipe',
         data: {
-          title: 'Southern style fried shrimp',
-          description: 'Fried Shrimp',
-          foodType: "['snack']",
-          cookTime: 10,
-          prepTime: 10,
-          ingredients: "['Shrimp', 'seasoning']",
+          title: this.state.recipeTitle,
+          description: this.state.description,
+          foodType: this.state.foodType,
+          cookTime: this.state.cookTime,
+          prepTime: this.state.prepTime,
+          ingredients: this.state.ingredients,
           rating: 2,
-          serves: 2,
-          directions: 'fry shrimp'
+          serves: this.state.serves,
+          directions: this.state.directions
         }
       })
       console.log(res)
@@ -110,7 +148,7 @@ class AddRecipe extends Component {
                         {item.name}
                         <Checkbox
                           name={item.name}
-                          checked={this.state.foodType.get(item.name)}
+                          checked={this.showFoodTypeChecked(item.name)}
                           onChange={this.handleCheckboxChange}
                         />
                       </label>
@@ -148,7 +186,7 @@ class AddRecipe extends Component {
                         {item.name}
                         <Checkbox
                           name={item.name}
-                          checked={this.state.ingredients.get(item.name)}
+                          checked={this.showIngredientChecked(item.name)}
                           onChange={this.handleIngredientsCheckboxChange}
                         />
                       </label>
