@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 class Profile extends Component {
@@ -45,6 +46,7 @@ class Profile extends Component {
             <div className="column">
               <h2>MY RECIPES</h2>
               {this.renderRecipesList()}
+              <Link to="/profile/recipe">Add New</Link>
             </div>
           </div>
         </div>

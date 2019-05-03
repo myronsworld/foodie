@@ -3,7 +3,8 @@ const router = new express.Router()
 const Recipe = require('../models/recipe')
 const loginRequired = require('../middleware/loginRequired')
 
-router.post('/recipe', loginRequired, async (req, res) => {
+router.post('/api/recipe', loginRequired, async (req, res) => {
+  console.log(req.body)
   const recipe = new Recipe({
     ...req.body,
     chef: req.user._id
