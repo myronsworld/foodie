@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import Checkbox from '../AddRecipe/Checkbox'
 import foodTypeCheckboxes from '../AddRecipe/foodTypeCheckboxes'
 import ingredientsCheckboxes from '../AddRecipe/ingredientsCheckboxes'
@@ -16,7 +17,8 @@ class AddRecipe extends Component {
       prepTime: null,
       ingredients: [],
       serves: null,
-      directions: ''
+      directions: '',
+      redirect: false
     }
 
     this.handlefoodTypeCheckboxChange = this.handlefoodTypeCheckboxChange.bind(this)
@@ -91,13 +93,18 @@ class AddRecipe extends Component {
           directions: this.state.directions
         }
       })
-      console.log(res)
+      if (res) {
+        this.setState(() => ({ redirect: true }))
+      }
     } catch (e) {
       console.log(e)
     }
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/profile" />
+    }
     return (
       <section className="section">
         <div className="container is-fluid">
