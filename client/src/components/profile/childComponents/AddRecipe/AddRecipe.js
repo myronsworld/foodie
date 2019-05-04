@@ -18,7 +18,8 @@ class AddRecipe extends Component {
       serves: null,
       directions: ''
     }
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this)
+
+    this.handlefoodTypeCheckboxChange = this.handlefoodTypeCheckboxChange.bind(this)
     this.handleIngredientsCheckboxChange = this.handleIngredientsCheckboxChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -32,42 +33,30 @@ class AddRecipe extends Component {
     this.setState({ [name]: value })
   }
 
-  handleCheckboxChange(event) {
+  handlefoodTypeCheckboxChange(event) {
     const target = event.target.name
-    const isChecked = event.target.checked
-
-    if (!isChecked) {
-      if (this.state.foodType.includes(target)) {
-        this.setState((prevState) => ({
-          foodType: [this.state.foodType.splice(this.state.foodType.indexOf(target), 1)]
-        }))
-      }
-    }
 
     if (!this.state.foodType.includes(target)) {
       this.setState((prevState) => ({
         foodType: [...prevState.foodType, target]
       }))
+    } else {
+      this.setState((prevState) => ({
+        foodType: [...prevState.foodType.filter((current) => current !== target)]
+      }))
     }
-
-    console.log(this.state)
   }
 
   handleIngredientsCheckboxChange(event) {
     const target = event.target.name
-    const isChecked = event.target.checked
-
-    if (!isChecked) {
-      if (this.state.ingredients.includes(target)) {
-        this.setState((prevState) => ({
-          ingredients: [this.state.ingredients.splice(this.state.ingredients.indexOf(target), 1)]
-        }))
-      }
-    }
 
     if (!this.state.ingredients.includes(target)) {
       this.setState((prevState) => ({
         ingredients: [...prevState.ingredients, target]
+      }))
+    } else {
+      this.setState((prevState) => ({
+        ingredients: [...prevState.ingredients.filter((current) => current !== target)]
       }))
     }
   }
@@ -149,7 +138,7 @@ class AddRecipe extends Component {
                         <Checkbox
                           name={item.name}
                           checked={this.showFoodTypeChecked(item.name)}
-                          onChange={this.handleCheckboxChange}
+                          onChange={this.handlefoodTypeCheckboxChange}
                         />
                       </label>
                     ))}
@@ -173,7 +162,7 @@ class AddRecipe extends Component {
                     <input
                       className="input"
                       name="prepTime"
-                      type="text"
+                      type="number"
                       value={this.state.value}
                       onChange={this.handleChange}
                     />
