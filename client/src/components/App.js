@@ -9,6 +9,7 @@ import Recipe from './profile/Recipe'
 import Home from './Home'
 import About from './About'
 import PrivateRoute from '../HOCs/PrivateRoute'
+import './styles/main.css'
 
 class App extends Component {
   constructor(props) {
@@ -40,15 +41,25 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Header {...this.state} />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
-          <PrivateRoute exact path="/profile/recipe" {...this.state} component={AddRecipe} />
-          <PrivateRoute exact path="/profile/recipe/:id" {...this.state} component={Recipe} />
-        </Switch>
-        <Footer />
+        <div className="wrapper">
+          <Header {...this.state} />
+          <div className="page-body">
+            <section className="section">
+              <div className="container is-fluid">
+                <div className="columns">
+                  <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/about" component={About} />
+                    <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
+                    <PrivateRoute exact path="/profile/recipe" {...this.state} component={AddRecipe} />
+                    <PrivateRoute exact path="/profile/recipe/:id" {...this.state} component={Recipe} />
+                  </Switch>
+                </div>
+              </div>
+            </section>
+          </div>
+          <Footer />
+        </div>
       </Router>
     )
   }

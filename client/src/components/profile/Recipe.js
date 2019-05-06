@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 
 class Recipe extends Component {
@@ -45,14 +45,9 @@ class Recipe extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container is-fluid">
-          <div className="columns">
-            <div className="column" />
-            <div className="column">{this.renderRecipe()}</div>
-          </div>
-        </div>
-      </section>
+      <Fragment>
+        <div className="column">{this.renderRecipe()}</div>
+      </Fragment>
     )
   }
 }

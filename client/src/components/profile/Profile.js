@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -43,18 +43,14 @@ class Profile extends Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container is-fluid">
-          <div className="columns">
-            <div className="column">{this.renderContent()}</div>
-            <div className="column">
-              <h2>MY RECIPES</h2>
-              {this.renderRecipesList()}
-              <Link to="/profile/recipe">Add New</Link>
-            </div>
-          </div>
+      <Fragment>
+        <div className="column">{this.renderContent()}</div>
+        <div className="column">
+          <h2>MY RECIPES</h2>
+          {this.renderRecipesList()}
+          <Link to="/profile/recipe">Add New</Link>
         </div>
-      </section>
+      </Fragment>
     )
   }
 }

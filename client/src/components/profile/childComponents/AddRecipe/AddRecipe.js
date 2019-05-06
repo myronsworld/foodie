@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import Checkbox from '../AddRecipe/Checkbox'
 import foodTypeCheckboxes from '../AddRecipe/foodTypeCheckboxes'
@@ -106,120 +106,116 @@ class AddRecipe extends Component {
       return <Redirect to="/profile" />
     }
     return (
-      <section className="section">
-        <div className="container is-fluid">
-          <div className="columns">
-            <div className="column">
-              <h2>Add a new recipe</h2>
-              <form onSubmit={this.handleSubmit}>
-                <label>ADDITION</label>
-                <div className="field">
-                  <label className="label">Title</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="recipeTitle"
-                      type="text"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Description</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="description"
-                      type="text"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <div className="control">
-                    {foodTypeCheckboxes.map((item) => (
-                      <label key={item.key}>
-                        {item.name}
-                        <Checkbox
-                          name={item.name}
-                          checked={this.showFoodTypeChecked(item.name)}
-                          onChange={this.handlefoodTypeCheckboxChange}
-                        />
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Cook Time(in minutes)</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="cookTime"
-                      type="number"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Prep Time(in minutes)</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="prepTime"
-                      type="number"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <div className="control">
-                    {ingredientsCheckboxes.map((item) => (
-                      <label key={item.key}>
-                        {item.name}
-                        <Checkbox
-                          name={item.name}
-                          checked={this.showIngredientChecked(item.name)}
-                          onChange={this.handleIngredientsCheckboxChange}
-                        />
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Serves</label>
-                  <div className="control">
-                    <input
-                      className="input"
-                      name="serves"
-                      type="number"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Directions</label>
-                  <div className="control">
-                    <textarea
-                      className="input"
-                      name="directions"
-                      type="textarea"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-                <input className="submit" type="submit" value="Submit" />
-              </form>
+      <Fragment>
+        <div className="column">
+          <h2>Add a new recipe</h2>
+          <form onSubmit={this.handleSubmit}>
+            <label>ADDITION</label>
+            <div className="field">
+              <label className="label">Title</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="recipeTitle"
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </div>
             </div>
-            <div className="column" />
-          </div>
+            <div className="field">
+              <label className="label">Description</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="description"
+                  type="text"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                {foodTypeCheckboxes.map((item) => (
+                  <label key={item.key}>
+                    {item.name}
+                    <Checkbox
+                      name={item.name}
+                      checked={this.showFoodTypeChecked(item.name)}
+                      onChange={this.handlefoodTypeCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Cook Time(in minutes)</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="cookTime"
+                  type="number"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Prep Time(in minutes)</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="prepTime"
+                  type="number"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                {ingredientsCheckboxes.map((item) => (
+                  <label key={item.key}>
+                    {item.name}
+                    <Checkbox
+                      name={item.name}
+                      checked={this.showIngredientChecked(item.name)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Serves</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="serves"
+                  type="number"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Directions</label>
+              <div className="control">
+                <textarea
+                  className="input"
+                  name="directions"
+                  type="textarea"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <input className="submit" type="submit" value="Submit" />
+          </form>
         </div>
-      </section>
+        <div className="column" />
+      </Fragment>
     )
   }
 }
