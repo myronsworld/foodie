@@ -18,4 +18,18 @@ router.post('/api/recipe', loginRequired, async (req, res) => {
   }
 })
 
+router.get('/api/recipes/:id', loginRequired, async (req, res) => {
+  const _id = req.params.id
+
+  try {
+    const recipe = await Recipe.findOne({ _id, chef: req.user._id })
+    if (!recipe) {
+      res.status(404).send()
+    }
+    res.send(recipe)
+  } catch (e) {
+    res.status(400).send(e)
+  }
+})
+
 module.exports = router
