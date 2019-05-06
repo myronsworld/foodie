@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import axios from 'axios'
-import Header from './Header'
-import Footer from './Footer'
-import Profile from './profile/Profile'
-import AddRecipe from './profile/childComponents/AddRecipe/AddRecipe'
-import Recipe from './profile/Recipe'
-import Home from './Home'
-import About from './About'
+import Header from './Header/Header'
+import Footer from './Footer/Footer'
+import Profile from '../App/Pages/Profile/Profile'
+import AddRecipe from './Profile/AddRecipe/AddRecipe'
+import Recipe from './Pages/Profile/Recipe/Recipe'
+import Home from './Pages/Home/Home'
+import About from './Pages/About/About'
 import PrivateRoute from '../HOCs/PrivateRoute'
-import './styles/main.css'
+import './main.css'
 
 class App extends Component {
   constructor(props) {
