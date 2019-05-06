@@ -31,7 +31,11 @@ class Profile extends Component {
 
     let listRecipes = []
     if (recipes) {
-      listRecipes = recipes.map((recipe) => <li key={recipe._id}>{recipe.title}</li>)
+      listRecipes = recipes.map((recipe) => (
+        <li key={recipe._id}>
+          <Link to={`/profile/recipe/` + recipe._id}>{recipe.title}</Link>
+        </li>
+      ))
     }
 
     return <ul>{listRecipes}</ul>

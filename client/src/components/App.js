@@ -5,6 +5,7 @@ import Header from './Header'
 import Footer from './Footer'
 import Profile from './profile/Profile'
 import AddRecipe from './profile/childComponents/AddRecipe/AddRecipe'
+import Recipe from './profile/Recipe'
 import Home from './Home'
 import About from './About'
 import PrivateRoute from '../HOCs/PrivateRoute'
@@ -45,6 +46,7 @@ class App extends Component {
           <Route exact path="/about" component={About} />
           <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
           <PrivateRoute exact path="/profile/recipe" {...this.state} component={AddRecipe} />
+          <PrivateRoute exact path="/profile/recipe/:id" {...this.state} component={Recipe} />
         </Switch>
         <Footer />
       </Router>
