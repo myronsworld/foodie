@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderContent() {
-    console.log(this.props)
-    if (this.props.auth !== false) {
+    console.log(this.props.auth)
+    if (this.props.auth) {
       return (
         <Fragment>
           <Link className="navbar-item" to="/profile">
@@ -17,7 +17,7 @@ class Header extends Component {
         </Fragment>
       )
     }
-    if (this.props.auth === false) {
+    if (!this.props.auth) {
       return (
         <Fragment>
           <a className="navbar-item" href="/login">
@@ -49,7 +49,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  auth: PropTypes.bool
+  auth: PropTypes.string
 }
 
 export default Header
