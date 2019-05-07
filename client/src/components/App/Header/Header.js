@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderContent() {
+    console.log(this.props)
     if (this.props.auth !== false) {
       return (
         <Fragment>
@@ -44,6 +46,10 @@ class Header extends Component {
       </header>
     )
   }
+}
+
+Header.propTypes = {
+  auth: PropTypes.bool
 }
 
 export default Header

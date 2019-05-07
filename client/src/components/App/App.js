@@ -39,10 +39,11 @@ class App extends Component {
   }
 
   render() {
+    const auth = this.state.auth
     return (
       <Router>
         <div className="wrapper">
-          <Header {...this.state} />
+          <Header auth />
           <div className="page-body">
             <section className="section">
               <div className="container is-fluid">
