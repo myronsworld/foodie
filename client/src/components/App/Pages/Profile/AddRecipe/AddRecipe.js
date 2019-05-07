@@ -138,7 +138,7 @@ class AddRecipe extends Component {
             <div className="field">
               <div className="control">
                 {foodTypeCheckboxes.map((item) => (
-                  <label key={item.key}>
+                  <label className="checkbox" key={item.key}>
                     {item.name}
                     <Checkbox
                       name={item.name}
@@ -176,7 +176,7 @@ class AddRecipe extends Component {
             <div className="field">
               <div className="control">
                 {ingredientsCheckboxes.map((item) => (
-                  <label key={item.key}>
+                  <label className="checkbox" key={item.key}>
                     {item.name}
                     <Checkbox
                       name={item.name}
@@ -211,7 +211,7 @@ class AddRecipe extends Component {
                 />
               </div>
             </div>
-            <input className="submit" type="submit" value="Submit" />
+            <input className="submit button" type="submit" value="Submit" />
           </form>
         </div>
         <div className="column" />
