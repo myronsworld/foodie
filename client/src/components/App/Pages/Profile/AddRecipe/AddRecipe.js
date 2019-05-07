@@ -7,7 +7,6 @@ import axios from 'axios'
 
 class AddRecipe extends Component {
   constructor(props) {
-    console.log(props)
     super(props)
 
     this.state = {
