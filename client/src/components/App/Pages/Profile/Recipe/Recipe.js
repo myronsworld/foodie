@@ -30,7 +30,7 @@ class Recipe extends Component {
     const { title, cookTime, description, directions, foodType, ingredients, prepTime, serves } = this.state.recipe
 
     return (
-      <div>
+      <div className="content">
         <h1>{title}</h1>
         <p>{description}</p>
         <h3>cooktime: {cookTime}</h3>
@@ -46,7 +46,13 @@ class Recipe extends Component {
   render() {
     return (
       <Fragment>
-        <div className="column">{this.renderRecipe()}</div>
+        <div className="column">
+          <div className="tile is-ancestor">
+            <div className="tile is-parent is-4">
+              <div className="tile is-child box">{this.renderRecipe()}</div>
+            </div>
+          </div>
+        </div>
       </Fragment>
     )
   }

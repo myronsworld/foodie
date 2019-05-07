@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 class PrivateRoute extends Component {
   render() {
-    console.log(this.props)
     const { component: Component, ...rest } = this.props
 
     if (this.props.auth === false) {

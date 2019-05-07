@@ -44,11 +44,15 @@ class Profile extends Component {
   render() {
     return (
       <Fragment>
-        <div className="column">{this.renderContent()}</div>
         <div className="column">
-          <h2>MY RECIPES</h2>
-          {this.renderRecipesList()}
-          <Link to="/profile/recipe">Add New</Link>
+          <div className="content"> {this.renderContent()}</div>
+        </div>
+        <div className="column">
+          <div className="content">
+            <h2>MY RECIPES</h2>
+            {this.renderRecipesList()}
+            <Link to="/profile/recipe">Add New</Link>
+          </div>
         </div>
       </Fragment>
     )
