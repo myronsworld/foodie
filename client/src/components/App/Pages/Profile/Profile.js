@@ -51,7 +51,9 @@ class Profile extends Component {
           <div className="content">
             <h2>MY RECIPES</h2>
             {this.renderRecipesList()}
-            <Link to="/profile/recipe">Add New</Link>
+            <Link className="button" to="/profile/recipe">
+              Add New
+            </Link>
           </div>
         </div>
       </Fragment>

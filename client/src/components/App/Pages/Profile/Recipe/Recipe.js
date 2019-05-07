@@ -33,10 +33,10 @@ class Recipe extends Component {
       <div className="content">
         <h1>{title}</h1>
         <p>{description}</p>
-        <h3>cooktime: {cookTime}</h3>
-        <h3>preptime: {prepTime}</h3>
-        <h3>foodType: {foodType}</h3>
-        <h3>serves: {serves}</h3>
+        <p>cooktime: {cookTime}</p>
+        <p>preptime: {prepTime}</p>
+        <p>foodType: {foodType}</p>
+        <p>serves: {serves}</p>
         <p>{ingredients}</p>
         <p>{directions}</p>
       </div>
