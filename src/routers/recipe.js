@@ -52,4 +52,8 @@ router.get('/api/formData/foodtypes', loginRequired, async (req, res) => {
   ])
 })
 
+router.get('/api/formData/ingredients', loginRequired, async (req, res) => {
+  res.send([{ meat: ['beef', 'chicken'], seasoning: ['black pepper', 'salt'] }])
+})
+
 module.exports = router

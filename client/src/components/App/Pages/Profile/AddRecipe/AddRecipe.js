@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import Checkbox from '../AddRecipe/Checkbox'
-import foodTypeCheckboxes from '../AddRecipe/foodTypeCheckboxes'
 import ingredientsCheckboxes from '../AddRecipe/ingredientsCheckboxes'
 import axios from 'axios'
 
