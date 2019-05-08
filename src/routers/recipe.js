@@ -4,7 +4,6 @@ const Recipe = require('../models/recipe')
 const loginRequired = require('../middleware/loginRequired')
 
 router.post('/api/recipe', loginRequired, async (req, res) => {
-  console.log(req.body)
   const recipe = new Recipe({
     ...req.body,
     chef: req.user._id

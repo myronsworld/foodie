@@ -70,8 +70,8 @@ class Recipe extends Component {
   renderRecipe() {
     const { title, cookTime, description, directions, foodType, ingredients, prepTime, serves } = this.state
     return (
-      <div className="content">
-        <form>
+      <form>
+        <div className="content">
           <div className="field">
             <label className="label">Title</label>
             <div className="control">
@@ -146,12 +146,9 @@ class Recipe extends Component {
               />
             </div>
           </div>
-        </form>
-
-        <button href="" className="button is-link">
-          Save
-        </button>
-      </div>
+        </div>
+        <input className="submit button is-link" type="submit" value="Submit" />
+      </form>
     )
   }
 

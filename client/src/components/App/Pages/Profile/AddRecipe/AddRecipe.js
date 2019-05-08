@@ -216,7 +216,7 @@ class AddRecipe extends Component {
                 />
               </div>
             </div>
-            <input className="submit button" type="submit" value="Submit" />
+            <input className="submit button is-link" type="submit" value="Submit" />
           </form>
         </div>
         <div className="column" />
