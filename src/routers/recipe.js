@@ -2,6 +2,8 @@ const express = require('express')
 const router = new express.Router()
 const Recipe = require('../models/recipe')
 const loginRequired = require('../middleware/loginRequired')
+const foodTypes = require('../models/foodTypes')
+const ingredients = require('../models/ingredients')
 
 router.post('/api/recipe', loginRequired, async (req, res) => {
   const recipe = new Recipe({
@@ -32,27 +34,11 @@ router.get('/api/recipes/:id', loginRequired, async (req, res) => {
 })
 
 router.get('/api/formData/foodtypes', loginRequired, async (req, res) => {
-  res.send([
-    'breads',
-    'breakfast',
-    'cakes',
-    'casseroles',
-    'cookies',
-    'desserts',
-    'dinner',
-    'dips',
-    'drinks',
-    'fish',
-    'grilling',
-    'bbq',
-    'sandwiches',
-    'baked',
-    'fried'
-  ])
+  res.send(foodTypes)
 })
 
 router.get('/api/formData/ingredients', loginRequired, async (req, res) => {
-  res.send([{ meat: ['beef', 'chicken'], seasoning: ['black pepper', 'salt'] }])
+  res.send(ingredients)
 })
 
 module.exports = router
