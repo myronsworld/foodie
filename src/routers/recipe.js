@@ -32,4 +32,24 @@ router.get('/api/recipes/:id', loginRequired, async (req, res) => {
   }
 })
 
+router.get('/api/formData/foodtypes', loginRequired, async (req, res) => {
+  res.send([
+    'breads',
+    'breakfast',
+    'cakes',
+    'casseroles',
+    'cookies',
+    'desserts',
+    'dinner',
+    'dips',
+    'drinks',
+    'fish',
+    'grilling',
+    'bbq',
+    'sandwiches',
+    'baked',
+    'fried'
+  ])
+})
+
 module.exports = router

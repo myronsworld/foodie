@@ -18,13 +18,19 @@ class AddRecipe extends Component {
       ingredients: [],
       serves: null,
       directions: '',
-      redirect: false
+      redirect: false,
+      allowedFoodTypes: []
     }
 
     this.handlefoodTypeCheckboxChange = this.handlefoodTypeCheckboxChange.bind(this)
     this.handleIngredientsCheckboxChange = this.handleIngredientsCheckboxChange.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  async componentDidMount() {
+    const res = await axios.get('/api/formData/foodtypes')
+    this.setState({ allowedFoodTypes: res.data })
   }
 
   handleChange(event) {
@@ -137,12 +143,12 @@ class AddRecipe extends Component {
             </div>
             <div className="field">
               <div className="control">
-                {foodTypeCheckboxes.map((item) => (
-                  <label className="checkbox" key={item.key}>
-                    {item.name}
+                {this.state.allowedFoodTypes.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
                     <Checkbox
-                      name={item.name}
-                      checked={this.showFoodTypeChecked(item.name)}
+                      name={item}
+                      checked={this.showFoodTypeChecked(item)}
                       onChange={this.handlefoodTypeCheckboxChange}
                     />
                   </label>
