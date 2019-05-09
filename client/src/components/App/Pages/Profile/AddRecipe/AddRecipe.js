@@ -18,7 +18,12 @@ class AddRecipe extends Component {
       serves: null,
       directions: '',
       redirect: false,
-      allowedFoodTypes: []
+      allowedFoodTypes: [],
+      sweeteners: [],
+      vegetables: [],
+      meats: [],
+      seasoning: [],
+      fruits: []
     }
 
     this.handlefoodTypeCheckboxChange = this.handlefoodTypeCheckboxChange.bind(this)
@@ -28,8 +33,16 @@ class AddRecipe extends Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get('/api/formData/foodtypes')
-    this.setState({ allowedFoodTypes: res.data })
+    const res = await axios.get('/api/formData')
+
+    this.setState({ allowedFoodTypes: res.data.foodTypes })
+    delete res.data.foodTypes
+
+    Object.keys(res.data).forEach((key) => {
+      this.setState(() => ({ [key]: res.data[key] }))
+    })
+
+    console.log(this.state)
   }
 
   handleChange(event) {
@@ -141,6 +154,7 @@ class AddRecipe extends Component {
               </div>
             </div>
             <div className="field">
+              <label className="label">Food Type</label>
               <div className="control">
                 {this.state.allowedFoodTypes.map((item) => (
                   <label className="checkbox" key={item}>
@@ -179,17 +193,19 @@ class AddRecipe extends Component {
               </div>
             </div>
             <div className="field">
+              <label className="label">Ingredients</label>
               <div className="control">
-                {ingredientsCheckboxes.map((item) => (
-                  <label className="checkbox" key={item.key}>
-                    {item.name}
+                {this.state.vegetables.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
                     <Checkbox
-                      name={item.name}
-                      checked={this.showIngredientChecked(item.name)}
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
                       onChange={this.handleIngredientsCheckboxChange}
                     />
                   </label>
                 ))}
+                {console.log(this.state)}
               </div>
             </div>
             <div className="field">
