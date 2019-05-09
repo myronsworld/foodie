@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import Checkbox from '../AddRecipe/Checkbox'
 import axios from 'axios'
 
@@ -290,6 +291,10 @@ class AddRecipe extends Component {
       </Fragment>
     )
   }
+}
+
+AddRecipe.propTypes = {
+  auth: PropTypes.string
 }
 
 export default AddRecipe
