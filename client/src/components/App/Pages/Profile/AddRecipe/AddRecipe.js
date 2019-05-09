@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import Checkbox from '../AddRecipe/Checkbox'
-import ingredientsCheckboxes from '../AddRecipe/ingredientsCheckboxes'
 import axios from 'axios'
 
 class AddRecipe extends Component {
@@ -195,6 +194,7 @@ class AddRecipe extends Component {
             <div className="field">
               <label className="label">Ingredients</label>
               <div className="control">
+                <label className="label">Vegetables</label>
                 {this.state.vegetables.map((item) => (
                   <label className="checkbox" key={item}>
                     {item}
@@ -205,7 +205,58 @@ class AddRecipe extends Component {
                     />
                   </label>
                 ))}
-                {console.log(this.state)}
+              </div>
+              <div className="control">
+                <label className="label">Fruit</label>
+                {this.state.fruits.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="control">
+                <label className="label">Seasoning</label>
+                {this.state.seasoning.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="control">
+                <label className="label">Sweeteners</label>
+                {this.state.sweeteners.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="control">
+                <label className="label">Meats</label>
+                {this.state.meats.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
               </div>
             </div>
             <div className="field">
