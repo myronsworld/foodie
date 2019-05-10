@@ -42,9 +42,7 @@ class Profile extends Component {
     return (
       <Fragment>
         <div className="column">
-          <div className="content">
-            <ProfileHeader name={name} />
-          </div>
+          <div className="content">{name ? <ProfileHeader name={name} /> : <div />}</div>
         </div>
         <div className="column">
           <div className="content">
