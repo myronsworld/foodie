@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import ProfileHeader from './ProfileHeader'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -20,12 +21,6 @@ class Profile extends Component {
     }
   }
 
-  renderContent() {
-    if (this.props.loading === false) {
-      return <p>This is your profile page, {this.props.user.name}</p>
-    }
-  }
-
   renderRecipesList() {
     const recipes = this.state.recipes.data
 
@@ -42,10 +37,14 @@ class Profile extends Component {
   }
 
   render() {
+    const { name } = this.props.user
+
     return (
       <Fragment>
         <div className="column">
-          <div className="content"> {this.renderContent()}</div>
+          <div className="content">
+            <ProfileHeader name={name} />
+          </div>
         </div>
         <div className="column">
           <div className="content">
