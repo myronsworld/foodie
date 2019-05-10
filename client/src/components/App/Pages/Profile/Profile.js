@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import ProfileHeader from './ProfileHeader'
+import RecipeList from './RecipeList'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -7,7 +8,7 @@ class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      recipes: {}
+      recipes: []
     }
   }
 
@@ -15,29 +16,16 @@ class Profile extends Component {
     try {
       const res = await axios.get('/api/profile/recipes')
 
-      this.setState(() => ({ recipes: res }))
+      this.setState(() => ({ recipes: res.data }))
     } catch (e) {
       console.log(e)
     }
   }
 
-  renderRecipesList() {
-    const recipes = this.state.recipes.data
-
-    let listRecipes = []
-    if (recipes) {
-      listRecipes = recipes.map((recipe) => (
-        <li key={recipe._id}>
-          <Link to={`/profile/recipe/` + recipe._id}>{recipe.title}</Link>
-        </li>
-      ))
-    }
-
-    return <ul>{listRecipes}</ul>
-  }
-
   render() {
     const { name } = this.props.user
+    const { recipes } = this.state
+    const loading = recipes.length === 0
 
     return (
       <Fragment>
@@ -47,7 +35,7 @@ class Profile extends Component {
         <div className="column">
           <div className="content">
             <h2>MY RECIPES</h2>
-            {this.renderRecipesList()}
+            {!loading ? <RecipeList recipes={recipes} /> : <div />}
             <Link className="button is-link" to="/profile/recipe">
               Add New
             </Link>
