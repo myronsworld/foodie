@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Checkbox from '../AddRecipe/Checkbox'
+import InputField from '../InputField'
 import axios from 'axios'
 
 class AddRecipe extends Component {
@@ -12,10 +13,10 @@ class AddRecipe extends Component {
       recipeTitle: '',
       description: '',
       foodType: [],
-      cookTime: null,
-      prepTime: null,
+      cookTime: 0,
+      prepTime: 0,
       ingredients: [],
-      serves: null,
+      serves: 0,
       directions: '',
       redirect: false,
       allowedFoodTypes: [],
@@ -44,8 +45,6 @@ class AddRecipe extends Component {
     Object.keys(res.data).forEach((key) => {
       this.setState(() => ({ [key]: res.data[key] }))
     })
-
-    console.log(this.state)
   }
 
   handleChange(event) {
@@ -126,36 +125,23 @@ class AddRecipe extends Component {
     if (this.state.redirect) {
       return <Redirect to="/profile" />
     }
+    console.log(this.state)
     return (
       <Fragment>
         <div className="column">
           <h2>Add a new recipe</h2>
           <form onSubmit={this.handleSubmit}>
-            <label>ADDITION</label>
-            <div className="field">
-              <label className="label">Title</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="recipeTitle"
-                  type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Description</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="description"
-                  type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
+            <InputField
+              name={Object.getOwnPropertyNames(this.state)[0]}
+              value={this.state.recipeTitle}
+              onChange={this.handleChange}
+            />
+            <InputField
+              name={Object.getOwnPropertyNames(this.state)[1]}
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+
             <div className="field">
               <label className="label">Food Type</label>
               <div className="control">
@@ -171,30 +157,18 @@ class AddRecipe extends Component {
                 ))}
               </div>
             </div>
-            <div className="field">
-              <label className="label">Cook Time(in minutes)</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="cookTime"
-                  type="number"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Prep Time(in minutes)</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="prepTime"
-                  type="number"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
+
+            <InputField
+              name={Object.getOwnPropertyNames(this.state)[3]}
+              value={this.state.cookTime}
+              onChange={this.handleChange}
+            />
+            <InputField
+              name={Object.getOwnPropertyNames(this.state)[4]}
+              value={this.state.prepTime}
+              onChange={this.handleChange}
+            />
+
             <div className="field">
               <label className="label">Ingredients</label>
               <div className="control">
@@ -302,30 +276,16 @@ class AddRecipe extends Component {
                 ))}
               </div>
             </div>
-            <div className="field">
-              <label className="label">Serves</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="serves"
-                  type="number"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Directions</label>
-              <div className="control">
-                <textarea
-                  className="input"
-                  name="directions"
-                  type="textarea"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
+            <InputField
+              name={Object.getOwnPropertyNames(this.state)[6]}
+              value={this.state.serves}
+              onChange={this.handleChange}
+            />
+            <InputField
+              name={Object.getOwnPropertyNames(this.state)[7]}
+              value={this.state.directions}
+              onChange={this.handleChange}
+            />
             <input className="submit button is-link" type="submit" value="Submit" />
           </form>
         </div>
