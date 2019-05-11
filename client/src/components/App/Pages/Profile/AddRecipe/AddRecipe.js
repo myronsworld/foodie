@@ -23,7 +23,10 @@ class AddRecipe extends Component {
       vegetables: [],
       meats: [],
       seasoning: [],
-      fruits: []
+      fruits: [],
+      dairy: [],
+      grains: [],
+      oils: []
     }
 
     this.handlefoodTypeCheckboxChange = this.handlefoodTypeCheckboxChange.bind(this)
@@ -249,6 +252,45 @@ class AddRecipe extends Component {
               <div className="control">
                 <label className="label">Meats</label>
                 {this.state.meats.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="control">
+                <label className="label">Dairy</label>
+                {this.state.dairy.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="control">
+                <label className="label">Grains</label>
+                {this.state.grains.map((item) => (
+                  <label className="checkbox" key={item}>
+                    {item}
+                    <Checkbox
+                      name={item}
+                      checked={this.showIngredientChecked(item)}
+                      onChange={this.handleIngredientsCheckboxChange}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="control">
+                <label className="label">Oils</label>
+                {this.state.oils.map((item) => (
                   <label className="checkbox" key={item}>
                     {item}
                     <Checkbox
