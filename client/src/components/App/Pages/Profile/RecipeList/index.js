@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 const RecipeList = (props) => {
-  console.log(props)
   const recipes = props.recipes
 
   let listRecipes = []

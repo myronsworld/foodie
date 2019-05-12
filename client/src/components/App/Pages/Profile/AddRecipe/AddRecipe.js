@@ -141,7 +141,6 @@ class AddRecipe extends Component {
               value={this.state.description}
               onChange={this.handleChange}
             />
-
             <div className="field">
               <label className="label">Food Type</label>
               <div className="control">
@@ -157,7 +156,6 @@ class AddRecipe extends Component {
                 ))}
               </div>
             </div>
-
             <InputField
               name={Object.getOwnPropertyNames(this.state)[3]}
               value={this.state.cookTime}
@@ -168,7 +166,6 @@ class AddRecipe extends Component {
               value={this.state.prepTime}
               onChange={this.handleChange}
             />
-
             <div className="field">
               <label className="label">Ingredients</label>
               <div className="control">

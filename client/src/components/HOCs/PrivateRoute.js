@@ -8,6 +8,9 @@ class PrivateRoute extends Component {
     if (this.props.auth === false) {
       return window.location.assign('/login')
     }
+    if (!this.props.user.name) {
+      return <div />
+    }
 
     return <Component {...rest} />
   }
