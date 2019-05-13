@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import ProfileHeader from './ProfileHeader'
 import RecipeList from './RecipeList'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class Profile extends Component {
   constructor(props) {
@@ -12,14 +12,17 @@ class Profile extends Component {
     }
   }
 
-  async componentDidMount() {
+  async getUsersRecipes() {
     try {
       const res = await axios.get('/api/profile/recipes')
-
       this.setState(() => ({ recipes: res.data }))
     } catch (e) {
       console.log(e)
     }
+  }
+
+  componentDidMount() {
+    this.getUsersRecipes()
   }
 
   render() {
