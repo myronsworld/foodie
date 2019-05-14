@@ -2,23 +2,18 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 
 class Recipe extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title: '',
-      cookTime: 0,
-      description: '',
-      directions: [],
-      foodType: {},
-      ingredients: {},
-      prepTime: 0,
-      serves: 0
-    }
-    this.handleChange = this.handleChange.bind(this)
+  state = {
+    title: '',
+    cookTime: 0,
+    description: '',
+    directions: [],
+    foodType: {},
+    ingredients: {},
+    prepTime: 0,
+    serves: 0
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const target = event.target
     const value = target.value
     const name = target.name

@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Header extends Component {
+  static propTypes = {
+    auth: PropTypes.string.isRequired
+  }
+
   renderContent() {
     if (this.props.auth) {
       return (
@@ -45,10 +49,6 @@ class Header extends Component {
       </header>
     )
   }
-}
-
-Header.propTypes = {
-  auth: PropTypes.string
 }
 
 export default Header

@@ -12,16 +12,13 @@ import PrivateRoute from '../HOCs/PrivateRoute'
 import './main.css'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      auth: localStorage.getItem('sessionID'),
-      user: {},
-      loading: true
-    }
+  state = {
+    auth: localStorage.getItem('sessionID'),
+    user: {},
+    loading: true
   }
 
-  async componentDidMount() {
+  async getCurrentUser() {
     try {
       const res = await axios.get('/api/current_user')
 
@@ -36,6 +33,10 @@ class App extends Component {
       localStorage.removeItem('sessionID')
       console.log(e)
     }
+  }
+
+  componentDidMount() {
+    this.getCurrentUser()
   }
 
   render() {
