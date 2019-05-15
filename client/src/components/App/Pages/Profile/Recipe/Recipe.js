@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
+import Checkbox from '../AddRecipe/Checkbox'
 
 class Recipe extends Component {
   state = {
@@ -10,7 +11,28 @@ class Recipe extends Component {
     foodType: {},
     ingredients: {},
     prepTime: 0,
-    serves: 0
+    serves: 0,
+    allowedFoodTypes: [],
+    sweeteners: [],
+    vegetables: [],
+    meats: [],
+    seasoning: [],
+    fruits: [],
+    dairy: [],
+    grains: [],
+    oils: []
+  }
+
+  showFoodTypeChecked(searchFoodType) {
+    if (this.state.foodType.includes(searchFoodType)) {
+      return true
+    }
+  }
+
+  showIngredientChecked(searchIngredient) {
+    if (this.state.ingredients.includes(searchIngredient)) {
+      return true
+    }
   }
 
   handleChange = (event) => {
@@ -19,6 +41,44 @@ class Recipe extends Component {
     const name = target.name
 
     this.setState({ [name]: value })
+  }
+  handlefoodTypeCheckboxChange = (event) => {
+    const target = event.target.name
+
+    if (!this.state.foodType.includes(target)) {
+      this.setState((prevState) => ({
+        foodType: [...prevState.foodType, target]
+      }))
+    } else {
+      this.setState((prevState) => ({
+        foodType: [...prevState.foodType.filter((current) => current !== target)]
+      }))
+    }
+  }
+
+  handleIngredientsCheckboxChange = (event) => {
+    const target = event.target.name
+
+    if (!this.state.ingredients.includes(target)) {
+      this.setState((prevState) => ({
+        ingredients: [...prevState.ingredients, target]
+      }))
+    } else {
+      this.setState((prevState) => ({
+        ingredients: [...prevState.ingredients.filter((current) => current !== target)]
+      }))
+    }
+  }
+
+  getFormData = async () => {
+    const res = await axios.get('/api/formData')
+
+    this.setState({ allowedFoodTypes: res.data.foodTypes })
+    delete res.data.foodTypes
+
+    Object.keys(res.data).forEach((key) => {
+      this.setState(() => ({ [key]: res.data[key] }))
+    })
   }
 
   async componentDidMount() {
@@ -46,20 +106,8 @@ class Recipe extends Component {
     } catch (e) {
       console.log(e)
     }
-  }
 
-  /// need to add handle this these and setstate for each piece of state
-
-  renderInputs(arr) {
-    // arr.map((item) => {
-    //   return (
-    //     <div className="control">
-    //       <input name="cookTime" onChange={this.handleChange} className="input is-primary" type="number" value={item} />
-    //     </div>
-    //   )
-    // })
-
-    return <div>df</div>
+    this.getFormData()
   }
 
   renderRecipe() {
@@ -83,6 +131,19 @@ class Recipe extends Component {
                 type="text"
                 value={description}
               />
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Food Types</h4>
+            <div className="control is-grouped">
+              {this.state.allowedFoodTypes.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showFoodTypeChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
             </div>
           </div>
           <div className="field">
@@ -109,10 +170,110 @@ class Recipe extends Component {
               />
             </div>
           </div>
-          {/* <div className="field">
-            <label className="label">FoodType</label>
-            {this.renderInputs()}
-          </div> */}
+          <div className="field content">
+            <h4>Vegetables</h4>
+            <div className="control is-grouped">
+              {this.state.vegetables.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Fruits</h4>
+            <div className="control is-grouped">
+              {this.state.fruits.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Seasonings</h4>
+            <div className="control is-grouped">
+              {this.state.seasoning.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Sweeteners</h4>
+            <div className="control is-grouped">
+              {this.state.sweeteners.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Meats</h4>
+            <div className="control is-grouped">
+              {this.state.meats.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Dairy</h4>
+            <div className="control is-grouped">
+              {this.state.dairy.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Grains</h4>
+            <div className="control is-grouped">
+              {this.state.grains.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="field content">
+            <h4>Oils</h4>
+            <div className="control is-grouped">
+              {this.state.oils.map((item) => (
+                <Checkbox
+                  type="checkbox"
+                  name={item}
+                  checked={this.showIngredientChecked(item)}
+                  onChange={this.handlefoodTypeCheckboxChange}
+                />
+              ))}
+            </div>
+          </div>
           <div className="field">
             <label className="label">Serves</label>
             <div className="control">

@@ -162,7 +162,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -175,7 +175,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -188,7 +188,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -201,7 +201,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -214,7 +214,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -227,7 +227,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -240,7 +240,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
@@ -253,7 +253,7 @@ class AddRecipe extends Component {
                   <Checkbox
                     type="checkbox"
                     name={item}
-                    checked={this.showFoodTypeChecked(item)}
+                    checked={this.showIngredientChecked(item)}
                     onChange={this.handleIngredientsCheckboxChange}
                   />
                 ))}
