@@ -1,7 +1,10 @@
 import React from 'react'
 
-const Checkbox = ({ type = 'checkbox', className = 'checkbox', name, checked = false, onChange }) => (
-  <input type={type} className={className} name={name} checked={checked} onChange={onChange} />
+const Checkbox = ({ label, name, checked = false, onChange }) => (
+  <label className="checkbox" key={name}>
+    {name}
+    <input type="checkbox" name={name} checked={checked} onChange={onChange} />
+  </label>
 )
 
 export default Checkbox

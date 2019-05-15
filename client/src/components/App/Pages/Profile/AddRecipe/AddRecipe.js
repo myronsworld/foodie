@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
-import Checkbox from '../AddRecipe/Checkbox'
+import Checkbox from './Checkbox'
 import InputField from '../InputField'
 import axios from 'axios'
+import './styles.css'
 
 class AddRecipe extends Component {
   state = {
@@ -112,11 +113,10 @@ class AddRecipe extends Component {
   }
 
   render() {
-    console.log(this.props)
     if (this.state.redirect) {
       return <Redirect to="/profile" />
     }
-    // console.log(this.state)
+
     return (
       <Fragment>
         <div className="column">
@@ -132,18 +132,16 @@ class AddRecipe extends Component {
               value={this.state.description}
               onChange={this.handleChange}
             />
-            <div className="field">
-              <label className="label">Food Type</label>
-              <div className="control">
+            <div className="field content">
+              <h4>Food Types</h4>
+              <div className="control is-grouped">
                 {this.state.allowedFoodTypes.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showFoodTypeChecked(item)}
-                      onChange={this.handlefoodTypeCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handlefoodTypeCheckboxChange}
+                  />
                 ))}
               </div>
             </div>
@@ -157,110 +155,107 @@ class AddRecipe extends Component {
               value={this.state.prepTime}
               onChange={this.handleChange}
             />
-            <div className="field">
-              <label className="label">Ingredients</label>
-              <div className="control">
-                <label className="label">Vegetables</label>
+            <div className="field content">
+              <h4>Vegetables</h4>
+              <div className="control is-grouped">
                 {this.state.vegetables.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Fruit</label>
+            </div>
+            <div className="field content">
+              <h4>Fruits</h4>
+              <div className="control is-grouped">
                 {this.state.fruits.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Seasoning</label>
+            </div>
+            <div className="field content">
+              <h4>Seasoning</h4>
+              <div className="control is-grouped">
                 {this.state.seasoning.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Sweeteners</label>
+            </div>
+            <div className="field content">
+              <h4>Sweeteners</h4>
+              <div className="control is-grouped">
                 {this.state.sweeteners.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Meats</label>
+            </div>
+            <div className="field content">
+              <h4>Meats</h4>
+              <div className="control is-grouped">
                 {this.state.meats.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Dairy</label>
+            </div>
+            <div className="field content">
+              <h4>Dairy</h4>
+              <div className="control is-grouped">
                 {this.state.dairy.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Grains</label>
+            </div>
+            <div className="field content">
+              <h4>Grains</h4>
+              <div className="control is-grouped">
                 {this.state.grains.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
-              <div className="control">
-                <label className="label">Oils</label>
+            </div>
+            <div className="field content">
+              <h4>Oils</h4>
+              <div className="control is-grouped">
                 {this.state.oils.map((item) => (
-                  <label className="checkbox" key={item}>
-                    {item}
-                    <Checkbox
-                      name={item}
-                      checked={this.showIngredientChecked(item)}
-                      onChange={this.handleIngredientsCheckboxChange}
-                    />
-                  </label>
+                  <Checkbox
+                    type="checkbox"
+                    name={item}
+                    checked={this.showFoodTypeChecked(item)}
+                    onChange={this.handleIngredientsCheckboxChange}
+                  />
                 ))}
               </div>
             </div>
