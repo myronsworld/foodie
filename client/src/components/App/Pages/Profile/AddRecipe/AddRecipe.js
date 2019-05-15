@@ -37,6 +37,32 @@ class AddRecipe extends Component {
     })
   }
 
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const res = await axios({
+        method: 'post',
+        url: '/api/recipe',
+        data: {
+          title: this.state.recipeTitle,
+          description: this.state.description,
+          foodType: this.state.foodType,
+          cookTime: this.state.cookTime,
+          prepTime: this.state.prepTime,
+          ingredients: this.state.ingredients,
+          rating: 2,
+          serves: this.state.serves,
+          directions: this.state.directions
+        }
+      })
+      if (res) {
+        this.setState(() => ({ redirect: true }))
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   handleChange = (event) => {
     const target = event.target
     const value = target.value
@@ -82,32 +108,6 @@ class AddRecipe extends Component {
   showIngredientChecked(searchIngredient) {
     if (this.state.ingredients.includes(searchIngredient)) {
       return true
-    }
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      const res = await axios({
-        method: 'post',
-        url: '/api/recipe',
-        data: {
-          title: this.state.recipeTitle,
-          description: this.state.description,
-          foodType: this.state.foodType,
-          cookTime: this.state.cookTime,
-          prepTime: this.state.prepTime,
-          ingredients: this.state.ingredients,
-          rating: 2,
-          serves: this.state.serves,
-          directions: this.state.directions
-        }
-      })
-      if (res) {
-        this.setState(() => ({ redirect: true }))
-      }
-    } catch (e) {
-      console.log(e)
     }
   }
 
