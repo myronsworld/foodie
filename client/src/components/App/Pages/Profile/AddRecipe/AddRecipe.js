@@ -1,39 +1,29 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Checkbox from '../AddRecipe/Checkbox'
 import InputField from '../InputField'
 import axios from 'axios'
 
 class AddRecipe extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      recipeTitle: '',
-      description: '',
-      foodType: [],
-      cookTime: 0,
-      prepTime: 0,
-      ingredients: [],
-      serves: 0,
-      directions: '',
-      redirect: false,
-      allowedFoodTypes: [],
-      sweeteners: [],
-      vegetables: [],
-      meats: [],
-      seasoning: [],
-      fruits: [],
-      dairy: [],
-      grains: [],
-      oils: []
-    }
-
-    this.handlefoodTypeCheckboxChange = this.handlefoodTypeCheckboxChange.bind(this)
-    this.handleIngredientsCheckboxChange = this.handleIngredientsCheckboxChange.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+  state = {
+    recipeTitle: '',
+    description: '',
+    foodType: [],
+    cookTime: 0,
+    prepTime: 0,
+    ingredients: [],
+    serves: 0,
+    directions: '',
+    redirect: false,
+    allowedFoodTypes: [],
+    sweeteners: [],
+    vegetables: [],
+    meats: [],
+    seasoning: [],
+    fruits: [],
+    dairy: [],
+    grains: [],
+    oils: []
   }
 
   async componentDidMount() {
@@ -47,7 +37,7 @@ class AddRecipe extends Component {
     })
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const target = event.target
     const value = target.value
     const name = target.name
@@ -55,7 +45,7 @@ class AddRecipe extends Component {
     this.setState({ [name]: value })
   }
 
-  handlefoodTypeCheckboxChange(event) {
+  handlefoodTypeCheckboxChange = (event) => {
     const target = event.target.name
 
     if (!this.state.foodType.includes(target)) {
@@ -69,7 +59,7 @@ class AddRecipe extends Component {
     }
   }
 
-  handleIngredientsCheckboxChange(event) {
+  handleIngredientsCheckboxChange = (event) => {
     const target = event.target.name
 
     if (!this.state.ingredients.includes(target)) {
@@ -95,7 +85,7 @@ class AddRecipe extends Component {
     }
   }
 
-  async handleSubmit(event) {
+  handleSubmit = async (event) => {
     event.preventDefault()
     try {
       const res = await axios({
@@ -122,10 +112,11 @@ class AddRecipe extends Component {
   }
 
   render() {
+    console.log(this.props)
     if (this.state.redirect) {
       return <Redirect to="/profile" />
     }
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <Fragment>
         <div className="column">
@@ -290,10 +281,6 @@ class AddRecipe extends Component {
       </Fragment>
     )
   }
-}
-
-AddRecipe.propTypes = {
-  auth: PropTypes.string
 }
 
 export default AddRecipe
