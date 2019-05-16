@@ -25,10 +25,16 @@ class Recipe extends Component {
     redirect: false
   }
 
-  handleSubmit = async (event) => {
-    event.preventDefault()
+  getRecipeID() {
     const splitURL = window.location.href.split('/')
     const id = splitURL[splitURL.length - 1]
+
+    return id
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    const id = this.getRecipeID()
     try {
       const res = await axios({
         method: 'patch',
@@ -111,9 +117,7 @@ class Recipe extends Component {
   }
 
   async componentDidMount() {
-    const splitURL = window.location.href.split('/')
-    const id = splitURL[splitURL.length - 1]
-
+    const id = this.getRecipeID()
     try {
       const res = await axios.get(`/api/recipes/${id}`, {
         headers: {
