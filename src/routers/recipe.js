@@ -37,8 +37,10 @@ router.get('/api/formData', loginRequired, async (req, res) => {
 })
 
 router.patch('/api/recipes/:id', loginRequired, async (req, res) => {
+  // get all the keys for each update
   const updates = Object.keys(req.body)
 
+  // create array of acceptable updates
   const allowedUpdates = [
     'foodType',
     'ingredients',
@@ -50,15 +52,17 @@ router.patch('/api/recipes/:id', loginRequired, async (req, res) => {
     'serves'
   ]
 
+  // check if EVERY update is included in the accaptable updates array
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
+  // return 400 code if false
   if (!isValidOperation) {
     return res.status(400).send({ error: 'invalid updates attempted!' })
   }
 
   try {
     const recipe = await Recipe.findOne({ _id: req.params.id, chef: req.user._id })
-    console.log(recipe)
+
     if (!recipe) {
       return res.status(400).send()
     }

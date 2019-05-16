@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Checkbox from '../AddRecipe/Checkbox'
 
@@ -20,7 +21,35 @@ class Recipe extends Component {
     fruits: [],
     dairy: [],
     grains: [],
-    oils: []
+    oils: [],
+    redirect: false
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    const splitURL = window.location.href.split('/')
+    const id = splitURL[splitURL.length - 1]
+    try {
+      const res = await axios({
+        method: 'patch',
+        url: `/api/recipes/${id}`,
+        data: {
+          title: this.state.title,
+          description: this.state.description,
+          foodType: this.state.foodType,
+          cookTime: this.state.cookTime,
+          prepTime: this.state.prepTime,
+          ingredients: this.state.ingredients,
+          serves: this.state.serves,
+          directions: this.state.directions
+        }
+      })
+      if (res) {
+        this.setState(() => ({ redirect: true }))
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   showFoodTypeChecked(searchFoodType) {
@@ -113,7 +142,7 @@ class Recipe extends Component {
   renderRecipe() {
     const { title, cookTime, description, directions, foodType, ingredients, prepTime, serves } = this.state
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="content">
           <div className="field">
             <label className="label">Title</label>
@@ -309,6 +338,9 @@ class Recipe extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/profile" />
+    }
     return (
       <Fragment>
         <div className="column">
