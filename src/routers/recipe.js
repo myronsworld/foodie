@@ -36,8 +36,41 @@ router.get('/api/formData', loginRequired, async (req, res) => {
   res.send(formData)
 })
 
-// router.get('/api/formData/ingredients', loginRequired, async (req, res) => {
-//   res.send(ingredients)
-// })
+router.patch('/api/recipes/:id', loginRequired, async (req, res) => {
+  const updates = Object.keys(req.body)
+
+  const allowedUpdates = [
+    'foodType',
+    'ingredients',
+    'directions',
+    'title',
+    'description',
+    'cookTime',
+    'prepTime',
+    'serves'
+  ]
+
+  const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+
+  if (!isValidOperation) {
+    return res.status(400).send({ error: 'invalid updates attempted!' })
+  }
+
+  try {
+    const recipe = await Recipe.findOne({ _id: req.params.id, chef: req.user._id })
+    console.log(recipe)
+    if (!recipe) {
+      return res.status(400).send()
+    }
+
+    updates.forEach((update) => (recipe[update] = req.body[update]))
+
+    await recipe.save()
+
+    res.send(recipe)
+  } catch (e) {
+    res.status(400).send(e)
+  }
+})
 
 module.exports = router
