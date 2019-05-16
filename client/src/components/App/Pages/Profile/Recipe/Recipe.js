@@ -211,7 +211,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -224,7 +224,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -237,7 +237,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -250,7 +250,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -263,7 +263,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -276,7 +276,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -289,7 +289,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -302,7 +302,7 @@ class Recipe extends Component {
                   type="checkbox"
                   name={item}
                   checked={this.showIngredientChecked(item)}
-                  onChange={this.handlefoodTypeCheckboxChange}
+                  onChange={this.handleIngredientsCheckboxChange}
                 />
               ))}
             </div>
@@ -319,10 +319,6 @@ class Recipe extends Component {
               />
             </div>
           </div>
-          {/* <div className="field">
-            <label className="label">Ingredients</label>
-            {this.renderInputs(ingredients)}
-          </div> */}
           <div className="field">
             <label className="label">Directions </label>
             <div className="control">
