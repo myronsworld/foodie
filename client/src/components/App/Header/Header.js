@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 class Header extends Component {
   static propTypes = {
-    auth: PropTypes.string.isRequired
+    auth: PropTypes.string
   }
 
   renderContent() {
@@ -15,7 +15,7 @@ class Header extends Component {
             Profile
           </Link>
           <a className="navbar-item" href="/api/logout">
-            logout
+            Logout
           </a>
         </Fragment>
       )
@@ -24,7 +24,7 @@ class Header extends Component {
       return (
         <Fragment>
           <a className="navbar-item" href="/login">
-            login
+            Login
           </a>
         </Fragment>
       )
