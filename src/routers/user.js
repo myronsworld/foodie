@@ -38,7 +38,7 @@ router.get('/api/profile/recipes', loginRequired, async (req, res) => {
       .execPopulate()
     res.send(req.user.recipes)
   } catch (e) {
-    res.status(500).send(e)
+    res.status(400).send(e)
   }
 })
 

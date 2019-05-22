@@ -35,6 +35,7 @@ class Recipe extends Component {
   handleSubmit = async (event) => {
     event.preventDefault()
     const id = this.getRecipeID()
+
     try {
       const res = await axios({
         method: 'patch',

@@ -18,6 +18,16 @@ router.post('/api/recipe', loginRequired, async (req, res) => {
   }
 })
 
+router.get('/api/recipes', async (req, res) => {
+  try {
+    const recipes = await Recipe.find({})
+
+    res.send(recipes)
+  } catch (e) {
+    res.status(400).send(e)
+  }
+})
+
 router.get('/api/recipes/:id', loginRequired, async (req, res) => {
   const _id = req.params.id
 
@@ -52,7 +62,7 @@ router.patch('/api/recipes/:id', loginRequired, async (req, res) => {
     'serves'
   ]
 
-  // check if EVERY update is included in the accaptable updates array
+  // check if EVERY update is included in the allowedUpdates array
   const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
   // return 400 code if false
