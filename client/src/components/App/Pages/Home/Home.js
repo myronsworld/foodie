@@ -39,19 +39,23 @@ class Home extends Component {
   }
 
   renderRecipes(recipes) {
-    return (
-      <div className="tile is-ancestor">
-        <div className="tile is-parent">
-          {this.state.recipes.map((recipe) => {
-            return (
-              <div key={recipe._id} className="tile is-child">
-                <h3 className="title">{recipe.title}</h3>
-              </div>
-            )
-          })}
+    return this.state.recipes.map((recipe) => {
+      return (
+        <div key={recipe._id} className="card">
+          <header className="card-header">
+            <p class="card-header-title">{recipe.title}</p>
+          </header>
+          <div className="card-content">
+            <p>{recipe.description}</p>
+          </div>
+          <footer className="card-footer">
+            <div class="card-footer-item">serves: {recipe.serves}</div>
+            <div class="card-footer-item">preptime: {recipe.prepTime}</div>
+            <div class="card-footer-item">cooktime: {recipe.cookTime}</div>
+          </footer>
         </div>
-      </div>
-    )
+      )
+    })
   }
 
   componentDidMount() {
@@ -62,7 +66,7 @@ class Home extends Component {
     return (
       <div className="column">
         <div className="content">
-          <p>Recent Recipes</p>
+          <h1>Recent Recipes</h1>
           {this.renderRecipes()}
         </div>
       </div>
