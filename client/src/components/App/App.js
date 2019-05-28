@@ -47,15 +47,13 @@ class App extends Component {
           <div className="page-body">
             <section className="section">
               <div className="container is-fluid">
-                <div className="columns">
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/about" component={About} />
-                    <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
-                    <PrivateRoute exact path="/profile/recipe" {...this.state} component={AddRecipe} />
-                    <PrivateRoute exact path="/profile/recipe/:id" {...this.state} component={Recipe} />
-                  </Switch>
-                </div>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/about" component={About} />
+                  <PrivateRoute exact path="/profile" {...this.state} component={Profile} />
+                  <PrivateRoute exact path="/profile/recipe" {...this.state} component={AddRecipe} />
+                  <PrivateRoute exact path="/profile/recipe/:id" {...this.state} component={Recipe} />
+                </Switch>
               </div>
             </section>
           </div>

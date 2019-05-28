@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 
 class Home extends Component {
@@ -41,7 +41,7 @@ class Home extends Component {
   renderRecipes(recipes) {
     return this.state.recipes.map((recipe) => {
       return (
-        <div key={recipe._id} className="card">
+        <div key={recipe._id} className="card" style={cardStyle}>
           <header className="card-header">
             <p class="card-header-title">{recipe.title}</p>
           </header>
@@ -64,14 +64,20 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="column">
+      <Fragment>
         <div className="content">
           <h1>Recent Recipes</h1>
-          {this.renderRecipes()}
         </div>
-      </div>
+        {this.renderRecipes()}
+      </Fragment>
     )
   }
+}
+
+const cardStyle = {
+  width: '350px',
+  display: 'inline-block',
+  margin: '10px'
 }
 
 export default Home
