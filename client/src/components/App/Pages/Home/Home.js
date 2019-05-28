@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
+import './style.css'
 
 class Home extends Component {
   state = {
@@ -41,7 +42,7 @@ class Home extends Component {
   renderRecipes(recipes) {
     return this.state.recipes.map((recipe) => {
       return (
-        <div key={recipe._id} className="card" style={cardStyle}>
+        <div key={recipe._id} className="card cardStyle">
           <header className="card-header">
             <p class="card-header-title">{recipe.title}</p>
           </header>
@@ -68,16 +69,10 @@ class Home extends Component {
         <div className="content">
           <h1>Recent Recipes</h1>
         </div>
-        {this.renderRecipes()}
+        <div className="column flex-container">{this.renderRecipes()}</div>
       </Fragment>
     )
   }
-}
-
-const cardStyle = {
-  width: '350px',
-  display: 'inline-block',
-  margin: '10px'
 }
 
 export default Home
