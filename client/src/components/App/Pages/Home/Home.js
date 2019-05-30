@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
-import './style.css'
+import styles from './styles.module.css'
 
 class Home extends Component {
   state = {
@@ -42,17 +42,17 @@ class Home extends Component {
   renderRecipes(recipes) {
     return this.state.recipes.map((recipe) => {
       return (
-        <div key={recipe._id} className="card cardStyle">
+        <div key={recipe._id} className={styles.cardStyle + ` card`}>
           <header className="card-header">
-            <p class="card-header-title">{recipe.title}</p>
+            <p className="card-header-title">{recipe.title}</p>
           </header>
           <div className="card-content">
-            <p>{recipe.description}</p>
+            <p className={styles.paragraphs}>{recipe.description}</p>
           </div>
           <footer className="card-footer">
-            <div class="card-footer-item">serves: {recipe.serves}</div>
-            <div class="card-footer-item">preptime: {recipe.prepTime}</div>
-            <div class="card-footer-item">cooktime: {recipe.cookTime}</div>
+            <div className="card-footer-item">serves: {recipe.serves}</div>
+            <div className="card-footer-item">preptime: {recipe.prepTime}</div>
+            <div className="card-footer-item">cooktime: {recipe.cookTime}</div>
           </footer>
         </div>
       )
@@ -69,7 +69,7 @@ class Home extends Component {
         <div className="content">
           <h1>Recent Recipes</h1>
         </div>
-        <div className="column flex-container">{this.renderRecipes()}</div>
+        <div className={styles['flex-container']}>{this.renderRecipes()}</div>
       </Fragment>
     )
   }

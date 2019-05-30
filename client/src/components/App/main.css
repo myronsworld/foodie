@@ -1,3 +1,7 @@
+body {
+  font-family: 'Source Sans Pro', Arial;
+}
+
 li {
   list-style: none;
 }
@@ -21,6 +25,9 @@ a:hover {
   flex-shrink: 0;
 }
 
+.footer {
+  background-color: #06070e;
+}
 .page-body {
   flex-grow: 1;
 }
