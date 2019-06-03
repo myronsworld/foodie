@@ -1,0 +1,14 @@
+.cardStyle {
+  width: 350px;
+  display: inline-block;
+  margin: 10px;
+}
+
+.card {
+  color: white;
+  background-color: #598392;
+}
+
+.paragraphs {
+  font-size: 0.875rem;
+}

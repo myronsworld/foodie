@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
+import RecipeCard from '../RecipeCard/RecipeCard'
 import styles from './styles.module.css'
 
 class Home extends Component {
@@ -41,21 +42,7 @@ class Home extends Component {
 
   renderRecipes(recipes) {
     return this.state.recipes.map((recipe) => {
-      return (
-        <div key={recipe._id} className={styles.cardStyle + ` card`}>
-          <header className="card-header">
-            <p className="card-header-title">{recipe.title}</p>
-          </header>
-          <div className="card-content">
-            <p className={styles.paragraphs}>{recipe.description}</p>
-          </div>
-          <footer className="card-footer">
-            <div className="card-footer-item">serves: {recipe.serves}</div>
-            <div className="card-footer-item">preptime: {recipe.prepTime}</div>
-            <div className="card-footer-item">cooktime: {recipe.cookTime}</div>
-          </footer>
-        </div>
-      )
+      return <RecipeCard recipe={recipe} />
     })
   }
 

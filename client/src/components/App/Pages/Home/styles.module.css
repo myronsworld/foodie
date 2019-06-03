@@ -1,26 +1,6 @@
-.cardStyle {
-  width: 350px;
-  display: inline-block;
-  margin: 10px;
-  /* background-color: #87c38f; */
-}
-
-.card {
-  color: white;
-  background-color: #598392;
-}
-
-.paragraphs {
-  font-size: 0.875rem;
-}
-
 .flex-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   /* align-items: center; */
 }
-
-/* .card-header-title {
-  color: 
-} */
