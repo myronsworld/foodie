@@ -1,7 +1,16 @@
 .cardStyle {
-  width: 350px;
+  width: 400px;
   display: inline-block;
   margin: 10px;
+  background-color: #eeb868;
+  color: #664147;
+  font-size: 1.1rem;
+  border: 2px solid #456990;
+  border-radius: 5px;
+}
+.card-footer-item-style {
+  border: 1px solid #456990;
+  border-radius: 1px;
 }
 
 .card {
@@ -15,6 +24,6 @@
 
 .title-style {
   color: #456990;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: capitalize;
 }
