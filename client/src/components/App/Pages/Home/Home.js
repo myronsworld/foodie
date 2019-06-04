@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios'
-import RecipeCard from '../RecipeCard/RecipeCard'
+import RecipeCard from '../RecipeCard'
 import styles from './styles.module.css'
 
 class Home extends Component {
