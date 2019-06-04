@@ -11,6 +11,7 @@ class Header extends Component {
     if (this.props.auth) {
       return (
         <Fragment>
+          <span class="tag is-black">beta</span>
           <Link className="navbar-item" to="/profile">
             Profile
           </Link>

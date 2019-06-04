@@ -11,7 +11,7 @@ class RecipeCard extends Component {
     return (
       <div key={_id} className={styles.cardStyle + ` card`}>
         <header className="card-header">
-          <p className="card-header-title">{title}</p>
+          <p className={styles['title-style'] + ` card-header-title`}>{title}</p>
         </header>
         <div className="card-content">
           <p className={styles.paragraphs}>{description}</p>

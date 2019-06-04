@@ -53,9 +53,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <div className="content">
-          <h1>Recent Recipes</h1>
-        </div>
+        <h1 className={styles['header-style'] + ` title`}>Recent Recipes</h1>
         <div className={styles['flex-container']}>{this.renderRecipes()}</div>
       </Fragment>
     )

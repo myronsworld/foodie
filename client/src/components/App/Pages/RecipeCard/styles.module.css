@@ -12,3 +12,9 @@
 .paragraphs {
   font-size: 0.875rem;
 }
+
+.title-style {
+  color: #456990;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
