@@ -6,7 +6,7 @@ class RecipeCard extends Component {
   render() {
     const { _id, title, description, serves, prepTime, cookTime } = this.props.recipe
     return (
-      <div key={_id} className={styles.cardStyle}>
+      <div className={styles.cardStyle}>
         <header className="card-header">
           <p className={styles['title-style'] + ` card-header-title`}>
             <Link to={`recipes/` + _id}>{title}</Link>

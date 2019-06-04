@@ -42,7 +42,7 @@ class Home extends Component {
 
   renderRecipes(recipes) {
     return this.state.recipes.map((recipe) => {
-      return <RecipeCard recipe={recipe} />
+      return <RecipeCard key={recipe._id} recipe={recipe} />
     })
   }
 

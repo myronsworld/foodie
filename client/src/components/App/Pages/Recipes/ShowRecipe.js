@@ -26,7 +26,7 @@ class ShowRecipe extends Component {
   }
 
   render() {
-    return <RecipeCard recipe={this.state.recipe} />
+    return <RecipeCard auth={this.props.auth} recipe={this.state.recipe} />
   }
 }
 
