@@ -130,6 +130,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.allowedFoodTypes.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showFoodTypeChecked(item)}
@@ -153,6 +154,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.vegetables.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -166,6 +168,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.fruits.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -179,6 +182,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.seasoning.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -192,6 +196,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.sweeteners.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -205,6 +210,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.meats.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -218,6 +224,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.dairy.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -231,6 +238,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.grains.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
@@ -244,6 +252,7 @@ class RecipeForm extends Component {
           <div className="control is-grouped">
             {this.state.oils.map((item) => (
               <Checkbox
+                key={item}
                 type="checkbox"
                 name={item}
                 checked={this.showIngredientChecked(item)}
