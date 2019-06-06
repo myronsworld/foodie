@@ -1,18 +1,19 @@
-import React, { Component, Fragment } from 'react'
-import { Redirect } from 'react-router-dom'
-import axios from 'axios'
+import React, { Component } from 'react'
 import Checkbox from '../AddRecipe/Checkbox'
+import { Redirect } from 'react-router-dom'
+import InputField from '../InputField'
+import axios from 'axios'
 
-class Recipe extends Component {
+class RecipeForm extends Component {
   state = {
-    title: '',
-    cookTime: 0,
+    recipeTitle: '',
     description: '',
-    directions: [],
-    foodType: {},
-    ingredients: {},
+    foodType: [],
+    cookTime: 0,
     prepTime: 0,
+    ingredients: [],
     serves: 0,
+    directions: '',
     allowedFoodTypes: [],
     sweeteners: [],
     vegetables: [],
@@ -24,29 +25,31 @@ class Recipe extends Component {
     oils: [],
     redirect: false
   }
+  async componentDidMount() {
+    const res = await axios.get('/api/formData')
 
-  getRecipeID() {
-    const splitURL = window.location.href.split('/')
-    const id = splitURL[splitURL.length - 1]
+    this.setState({ allowedFoodTypes: res.data.foodTypes })
+    delete res.data.foodTypes
 
-    return id
+    Object.keys(res.data).forEach((key) => {
+      this.setState(() => ({ [key]: res.data[key] }))
+    })
   }
 
   handleSubmit = async (event) => {
     event.preventDefault()
-    const id = this.getRecipeID()
-
     try {
       const res = await axios({
-        method: 'patch',
-        url: `/api/recipes/${id}`,
+        method: 'post',
+        url: '/api/recipe',
         data: {
-          title: this.state.title,
+          title: this.state.recipeTitle,
           description: this.state.description,
           foodType: this.state.foodType,
           cookTime: this.state.cookTime,
           prepTime: this.state.prepTime,
           ingredients: this.state.ingredients,
+          rating: 2,
           serves: this.state.serves,
           directions: this.state.directions
         }
@@ -59,18 +62,6 @@ class Recipe extends Component {
     }
   }
 
-  showFoodTypeChecked(searchFoodType) {
-    if (this.state.foodType.includes(searchFoodType)) {
-      return true
-    }
-  }
-
-  showIngredientChecked(searchIngredient) {
-    if (this.state.ingredients.includes(searchIngredient)) {
-      return true
-    }
-  }
-
   handleChange = (event) => {
     const target = event.target
     const value = target.value
@@ -78,6 +69,7 @@ class Recipe extends Component {
 
     this.setState({ [name]: value })
   }
+
   handlefoodTypeCheckboxChange = (event) => {
     const target = event.target.name
 
@@ -106,67 +98,34 @@ class Recipe extends Component {
     }
   }
 
-  getFormData = async () => {
-    const res = await axios.get('/api/formData')
-
-    this.setState({ allowedFoodTypes: res.data.foodTypes })
-    delete res.data.foodTypes
-
-    Object.keys(res.data).forEach((key) => {
-      this.setState(() => ({ [key]: res.data[key] }))
-    })
-  }
-
-  async componentDidMount() {
-    const id = this.getRecipeID()
-    try {
-      const res = await axios.get(`/api/recipes/${id}`, {
-        headers: {
-          'Content-Type': 'applicatdion/json'
-        }
-      })
-
-      if (res) {
-        delete res.data.chef
-        delete res.data.__v
-        delete res.data._id
-        delete res.data.createdAt
-        delete res.data.rating
-        delete res.data.updatedAt
-
-        this.setState(() => res.data)
-        console.log(this.state)
-      }
-    } catch (e) {
-      console.log(e)
+  showFoodTypeChecked(searchFoodType) {
+    if (this.state.foodType.includes(searchFoodType)) {
+      return true
     }
-
-    this.getFormData()
   }
 
-  renderRecipe() {
-    const { title, cookTime, description, directions, foodType, ingredients, prepTime, serves } = this.state
+  showIngredientChecked(searchIngredient) {
+    if (this.state.ingredients.includes(searchIngredient)) {
+      return true
+    }
+  }
+  render() {
+    if (this.state.redirect) {
+      return <Redirect to="/profile" />
+    }
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="field">
-          <label className="label">Title</label>
-          <div className="control">
-            <input onChange={this.handleChange} name="title" className="input is-primary" type="text" value={title} />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Description</label>
-          <div className="control">
-            <input
-              onChange={this.handleChange}
-              name="description"
-              className="input is-primary"
-              type="text"
-              value={description}
-            />
-          </div>
-        </div>
-        <div className="field">
+        <InputField
+          name={Object.getOwnPropertyNames(this.state)[0]}
+          value={this.state.recipeTitle}
+          onChange={this.handleChange}
+        />
+        <InputField
+          name={Object.getOwnPropertyNames(this.state)[1]}
+          value={this.state.description}
+          onChange={this.handleChange}
+        />
+        <div className="field content">
           <h4>Food Types</h4>
           <div className="control is-grouped">
             {this.state.allowedFoodTypes.map((item) => (
@@ -179,31 +138,17 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
-          <label className="label">Cooktime</label>
-          <div className="control">
-            <input
-              name="cookTime"
-              onChange={this.handleChange}
-              className="input is-primary"
-              type="number"
-              value={cookTime}
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Preptime</label>
-          <div className="control">
-            <input
-              name="prepTime"
-              onChange={this.handleChange}
-              className="input is-primary"
-              type="number"
-              value={prepTime}
-            />
-          </div>
-        </div>
-        <div className="field">
+        <InputField
+          name={Object.getOwnPropertyNames(this.state)[3]}
+          value={this.state.cookTime}
+          onChange={this.handleChange}
+        />
+        <InputField
+          name={Object.getOwnPropertyNames(this.state)[4]}
+          value={this.state.prepTime}
+          onChange={this.handleChange}
+        />
+        <div className="field content">
           <h4>Vegetables</h4>
           <div className="control is-grouped">
             {this.state.vegetables.map((item) => (
@@ -216,7 +161,7 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
+        <div className="field content">
           <h4>Fruits</h4>
           <div className="control is-grouped">
             {this.state.fruits.map((item) => (
@@ -229,8 +174,8 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
-          <h4>Seasonings</h4>
+        <div className="field content">
+          <h4>Seasoning</h4>
           <div className="control is-grouped">
             {this.state.seasoning.map((item) => (
               <Checkbox
@@ -242,7 +187,7 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
+        <div className="field content">
           <h4>Sweeteners</h4>
           <div className="control is-grouped">
             {this.state.sweeteners.map((item) => (
@@ -255,7 +200,7 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
+        <div className="field content">
           <h4>Meats</h4>
           <div className="control is-grouped">
             {this.state.meats.map((item) => (
@@ -268,7 +213,7 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
+        <div className="field content">
           <h4>Dairy</h4>
           <div className="control is-grouped">
             {this.state.dairy.map((item) => (
@@ -281,7 +226,7 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
+        <div className="field content">
           <h4>Grains</h4>
           <div className="control is-grouped">
             {this.state.grains.map((item) => (
@@ -294,7 +239,7 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
+        <div className="field content">
           <h4>Oils</h4>
           <div className="control is-grouped">
             {this.state.oils.map((item) => (
@@ -307,51 +252,20 @@ class Recipe extends Component {
             ))}
           </div>
         </div>
-        <div className="field">
-          <label className="label">Serves</label>
-          <div className="control">
-            <input
-              name="serves"
-              onChange={this.handleChange}
-              className="input is-primary"
-              type="number"
-              value={serves}
-            />
-          </div>
-        </div>
-        <div className="field">
-          <label className="label">Directions </label>
-          <div className="control">
-            <input
-              name="directions"
-              onChange={this.handleChange}
-              className="input is-primary"
-              type="text"
-              value={directions}
-            />
-          </div>
-        </div>
+        <InputField
+          name={Object.getOwnPropertyNames(this.state)[6]}
+          value={this.state.serves}
+          onChange={this.handleChange}
+        />
+        <InputField
+          name={Object.getOwnPropertyNames(this.state)[7]}
+          value={this.state.directions}
+          onChange={this.handleChange}
+        />
         <input className="submit button is-link" type="submit" value="Submit" />
       </form>
     )
   }
-
-  render() {
-    if (this.state.redirect) {
-      return <Redirect to="/profile" />
-    }
-    return (
-      <Fragment>
-        <div className="column">
-          <div className="tile is-ancestor">
-            <div className="tile is-parent">
-              <div className="tile is-child box">{this.renderRecipe()}</div>
-            </div>
-          </div>
-        </div>
-      </Fragment>
-    )
-  }
 }
 
-export default Recipe
+export default RecipeForm
